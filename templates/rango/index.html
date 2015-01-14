@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+
+    <head>
+        <title>Rango</title>
+    </head>
+
+    <body>
+        <h1>Rango says...</h1>
+        hello world! <strong>{{ boldmessage }}</strong><br />
+        <a href="/rango/about/">About</a><br />
+        <img src="{% static 'images/mask_of_the_father.png' %}" alt= "Picture of the Mask of the Father" />
+    </body>
+
+</html>

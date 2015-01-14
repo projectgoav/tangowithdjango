@@ -5,8 +5,16 @@ from django.http import HttpResponse
 
 #Basic Index
 def index(request):
-	return HttpResponse("Rango says hello! | <a href='/rango/about'>About Me!</a>")
+
+	#Adds data to the variables in the index.html template
+	context_dic = { 'boldmessage' : "I am bold font from the context"}
+
+	return render(request, 'rango/index.html', context_dic)
 
 #Basic About
 def about(request):
-	return HttpResponse("This tutorial has been put together by Ewan McCartney (2025797) | <a href='/rango/'>Return</a>")
+
+	#Adds the about Info to the page
+	context_dic = { 'Page_Content' : "This tutorial has been put together by Ewan McCartney (2025797M)"}
+
+	return render(request, 'rango/about.html', context_dic)
