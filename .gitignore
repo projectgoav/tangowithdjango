@@ -20,7 +20,12 @@ $RECYCLE.BIN/
 # =========================
 # Python Files
 # =========================
-*.pyc
+*.py[cod]
+
+# =========================
+# Databases
+# =========================
+*.dbsqlite3
 
 # =========================
 # Django (Copied from gitignore->python)
