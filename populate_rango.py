@@ -8,7 +8,7 @@ from rango.models import Category, Page
 
 
 def populate():
-    python_cat = add_cat('Python')
+    python_cat = add_cat('Python',128,64)
 
     add_page(cat=python_cat,
         title="Official Python Tutorial",
@@ -22,7 +22,7 @@ def populate():
         title="Learn Python in 10 Minutes",
         url="http://www.korokithakis.net/tutorials/python/")
 
-    django_cat = add_cat("Django")
+    django_cat = add_cat("Django",64,32)
 
     add_page(cat=django_cat,
         title="Official Django Tutorial",
@@ -46,8 +46,27 @@ def populate():
         title="Flask",
         url="http://flask.pocoo.org")
 
+
+    #Chapter 6 : Extensions
+    student_cat = add_cat("Ewan")
+
+    add_page(cat=student_cat,
+        title="Github",
+        url="https://github.com/projectgoav"
+        )
+
+    add_page(cat=student_cat,
+        title="Python Anywhere",
+        url="https://www.pythonanywhere.com/user/projectgoav"
+        )
+
     # Print out what we have added to the user.
     for c in Category.objects.all():
+
+        #Debug for adding likes and views
+        #print 'Views:' + str(c.views)
+        #print 'Likes:' + str(c.likes)
+
         for p in Page.objects.filter(category=c):
             print "- {0} - {1}".format(str(c), str(p))
 
@@ -55,11 +74,11 @@ def add_page(cat, title, url, views=0):
     p = Page.objects.get_or_create(category=cat, title=title, url=url, views=views)[0]
     return p
 
-def add_cat(name):
-    c = Category.objects.get_or_create(name=name)[0]
+def add_cat(name, views=0, likes=0):
+    c = Category.objects.get_or_create(name=name, views=views, likes=likes)[0]
     return c
 
-# Start here
+# Start execution here!
 if __name__ == '__main__':
     print "Starting Rango population script..."
     populate()
