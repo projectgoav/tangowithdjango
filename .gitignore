@@ -25,7 +25,7 @@ $RECYCLE.BIN/
 # =========================
 # Databases
 # =========================
-*.dbsqlite3
+*.sqlite3
 
 # =========================
 # Django (Copied from gitignore->python)
