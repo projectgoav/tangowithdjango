@@ -12,15 +12,18 @@ def populate():
 
     add_page(cat=python_cat,
         title="Official Python Tutorial",
-        url="http://docs.python.org/2/tutorial/")
+        url="http://docs.python.org/2/tutorial/",
+        views=2)
 
     add_page(cat=python_cat,
         title="How to Think like a Computer Scientist",
-        url="http://www.greenteapress.com/thinkpython/")
+        url="http://www.greenteapress.com/thinkpython/",
+        views=12)
 
     add_page(cat=python_cat,
         title="Learn Python in 10 Minutes",
-        url="http://www.korokithakis.net/tutorials/python/")
+        url="http://www.korokithakis.net/tutorials/python/",
+        views=33)
 
     django_cat = add_cat("Django",64,32)
 
@@ -34,7 +37,8 @@ def populate():
 
     add_page(cat=django_cat,
         title="How to Tango with Django",
-        url="http://www.tangowithdjango.com/")
+        url="http://www.tangowithdjango.com/",
+        views=50)
 
     frame_cat = add_cat("Other Frameworks")
 
@@ -52,12 +56,14 @@ def populate():
 
     add_page(cat=student_cat,
         title="Github",
-        url="https://github.com/projectgoav"
+        url="https://github.com/projectgoav",
+        views=100
         )
 
     add_page(cat=student_cat,
         title="Python Anywhere",
-        url="https://www.pythonanywhere.com/user/projectgoav"
+        url="https://www.pythonanywhere.com/user/projectgoav",
+        views = 20
         )
 
     # Print out what we have added to the user.
