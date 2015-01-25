@@ -21,6 +21,8 @@ class PageForm(forms.ModelForm):
     class Meta:
         model = Page
         exclude = ('category',)
+
+    #Helps with entering url
     def clean(self):
         cleaned_data = self.cleaned_data
         url = cleaned_data.get('url')
