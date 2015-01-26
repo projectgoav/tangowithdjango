@@ -108,3 +108,7 @@ PASSWORD_HASHERS = (
 		'django.contrib.auth.hashers.PBKDF2PasswordHasher',
 		'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 	)
+
+#Used to re-direct users when they have logged in
+LOGIN_URL = '/rango/login/'
+
