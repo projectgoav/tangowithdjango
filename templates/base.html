@@ -15,15 +15,15 @@
 
         <div>
         <ul>
-        {% if user.is_authenticated %}
-        	<li><a href="{% url 'restricted' %}">Super Secret Member's Area!</a></li>
-        	<li><a href="{% url 'add_category' %}">Add a New Category</a></li>
-        	<li><a href="{% url 'auth_logout' %}">Logout</a></li>
+         {% if user.is_authenticated %}
+            <li><a href="{% url 'restricted' %}">Super Secret Member's Area!</a></li>
+            <li><a href="{% url 'add_category' %}">Add a New Category</a></li>
+            <li><a href="{% url 'auth_logout' %}">Logout</a></li>
         {% else %}
-        	<li><a href="{% url 'registration_register' %}">Register Here!</a> OR <a href="{% url 'auth_login' %}">Login!</a></li>
+            <li><a href="{% url 'registration_register' %}">Register Here!</a> OR <a href="{% url 'auth_login' %}">Login!</a></li>
         {% endif %}
 
-        	<li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'index' %}">Take me back home</a></li>
         </ul>
 
