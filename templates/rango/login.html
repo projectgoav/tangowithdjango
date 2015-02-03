@@ -5,21 +5,22 @@
 {% block title %}Login{% endblock %}
 
 {% block body_block %}
-        <h1>Login to Rango</h1>
+<link href="{% static 'css/signin.css' %}" rel="stylesheet">
 
+    <div class="page-header">
+        <h1>Login to Rango</h1>
+    </div>
         <!-- Only displayed if they have entered the wrong details!-->
         {% if message %}
             <p style="color:red"><b>{{message }}</b></p><br />
         {% endif %}
 
-        <form id="login_form" method="post" action="{% url 'login' %}">
+        <form class="form-signin" role="form" id="login_form" method="post" action="{% url 'auth_login' %}">
             {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
-            <br />
-            Password: <input type="password" name="password" value="" size="50" />
-            <br />
+            <input class="form-control" placeholder="Username" id="id_username" maxlength="254" name="username" type="text" required autofocus=""/>
+            <input type="password" class="form-control" placeholder="Password" id="id_password" name="password" type="password" required />
 
-            <input type="submit" value="submit" />
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />Sign in</button>
         </form>
 
 {% endblock %}
