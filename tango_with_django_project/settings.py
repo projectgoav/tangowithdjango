@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rango'
+    'rango',
+    'registration'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -111,4 +112,11 @@ PASSWORD_HASHERS = (
 
 #Used to re-direct users when they have logged in
 LOGIN_URL = '/rango/login/'
+
+#Chapter 12 - Registration PARAMS
+REGISTRATION_OPEN = True        # People CAN register
+ACCOUNT_ACTIVATION_DAYS = 2     # 2 day activation window!
+REGISTRATION_AUTO_LOGIN = True  # Users will be auto-logged in
+LOGIN_REDIRECT_URL = '/rango/'  # Go here once logged in
+LOGIN_URL = '/accounts/login/'  # Go here when they need to login for content
 
