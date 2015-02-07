@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from rango.bing_search import run_query
 
 # Create your views here.
 from django.http import HttpResponse
@@ -242,5 +243,18 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/rango/')
+
+def search(request):
+
+    result_list = []
+
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+
+        if query:
+            #We need to do the query forom BING
+            result_list = run_query(query)
+
+    return render(request, 'rango/search.html', { 'result_list' : result_list})
 
 
