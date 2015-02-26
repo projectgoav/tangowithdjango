@@ -12,6 +12,9 @@
         <h3> Greetings {{ user.username }} </h3>
        <p> You have to be logged in to see this page! Therefore, you must be logged in!</p>
 
+       <h3> Your options </h3>
+       <p><a href="{% url 'auth_password_change' %}">Change password</a></p>
+
        <br />
        <p><b> Have a complimentary joke!</b><br /><i> {{ joke}} </i></p>
 
