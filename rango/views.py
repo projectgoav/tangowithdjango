@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from rango.models import Category, Page
+from rango.models import Category, Page, UserProfile
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from datetime import datetime
 from django.shortcuts import redirect
 from rango.bing_search import run_query
@@ -69,14 +70,20 @@ def category(request, category_name_slug):
     context_dict['result_list'] = None
     context_dict['query'] = None
     if request.method == 'POST':
-        query = request.POST['query'].strip()
 
-        if query:
-            # Run our Bing function to get the results list!
-            result_list = run_query(query)
+    #Using try here cause page is expected search POST
+    #But sometimes gets a re-direct from add_page causing this to break
+        try:
+            query = request.POST['query'].strip()
 
-            context_dict['result_list'] = result_list
-            context_dict['query'] = query
+            if query:
+                # Run our Bing function to get the results list!
+                result_list = run_query(query)
+
+                context_dict['result_list'] = result_list
+                context_dict['query'] = query
+        except:
+            pass
 
     try:
         category = Category.objects.get(slug=category_name_slug)
@@ -285,3 +292,41 @@ def track_url(request):
                 pass
 
     return redirect(url)
+
+def add_profile(request):
+    if request.method == 'POST':
+        profile_form = UserProfileForm(request.POST)
+
+        if profile_form.is_valid():
+            if request.user.is_authenticated():
+                profile = profile_form.save(commit=False)
+                user = User.objects.get(id=request.user.id)
+                profile.user = user
+                profile.website = request.POST['website']
+                profile.picture = request.FILES['picture']
+                profile.save()
+
+        # Take the user back to the homepage.
+        return HttpResponseRedirect('/rango/')
+
+    else:
+        form = UserProfileForm(request.GET)
+        return render(request, 'rango/profile_registration.html', { 'profile_form': form})
+
+@login_required
+def profile(request):
+    if request.session.get('visits'):
+        count= request.session.get('visits')
+    else:
+        count = "Unknown"
+
+    user = User.objects.get(username=request.user.username)
+    profile = UserProfile.objects.get(user_id=user.id)
+    context_dic = { 'user' : user, 'userprofile' : profile, 'visits' : count}
+
+    return render(request, 'rango/profile.html', context_dic)
+
+
+
+
+

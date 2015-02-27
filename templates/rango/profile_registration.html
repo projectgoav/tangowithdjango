@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Register Profile{% endblock %}
+
+{% block body_block %}
+        <div class="page-header">
+        	<h1>Add Profile</h1>
+       </div>
+
+        <form id="profile_form" role="form" id="user_form" method="post" action="{% url 'add_profile' %}"
+                enctype="multipart/form-data"> 
+
+		{% csrf_token %}
+
+        {{ profile_form.as_p }}
+
+        <!-- Provide a button to click to submit the form. -->
+        <button type="submit" class="btn btn-default">Complete</button>
+        </form>
+
+{% endblock %}

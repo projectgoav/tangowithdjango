@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}About{% endblock %}
+
+{% block body_block %}
+        <div class="page-header">
+        	<h1> {{ user.username }}'s Profile</h1>
+       </div>
+       <h4>Email: {{ user.email }}</h4>
+       <h3> Your options </h3>
+        <p><a href="{% url 'auth_password_change' %}">Change password</a></p>
+        <p>You have visited this site: {{ visits }} time(s)!</p>
+        <br>
+        <h3> Your Extra Details </h3>
+     <!-- Display extra information if required -->
+       <p> Website:
+       		{% if userprofile.website %}
+					<a href="{{ userprofile.website }}">{{ userprofile.website }}</a>
+			{% else %}
+					None Given
+			{% endif %}</p>
+
+       <p> Mugshot:
+       		 {% if userprofile.picture %}
+					<img src="{{ userprofile.picture.url }}" alt="User image" />
+			{% else %}
+					None Given
+			{% endif %}</p>
+{% endblock %}
