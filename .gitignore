@@ -35,7 +35,6 @@ $RECYCLE.BIN/
 # =========================
 # Exclude KEYS
 # =========================
-keys.py
 
 # =========================
 # Operating System Files
